@@ -118,7 +118,6 @@ class Related {
 			}
 			$i++;
 		}
-		//var_dump($recommendations);
 		return $recommendations;
 	}
 	
@@ -193,22 +192,18 @@ class Related {
 		$row = $query->row();
 		if($query->num_rows() > 0) {
 			$related = json_decode($row->related);
-			//var_dump($related);
 			if($related) {
 				$related = get_object_vars($related);
 				arsort($related);
-				//var_dump($related);
 				$i=0;
 				$related_id = "";
 				foreach($related as $id => $val) {
 					if($i >= $limit) {
 						break;
 					}
-					//var_dump($id);
 					$related_id .= $id . (($i<$limit-1) ? ',' : '');
 					$i++;
 				}
-				//var_dump($related_id);
 				$query = $this->EE->db->query("SELECT exp_channel_titles.entry_id as entry_id, title, author_id, field_id_{$this->field_id} as post FROM exp_channel_titles LEFT JOIN exp_channel_data ON exp_channel_data.entry_id = exp_channel_titles.entry_id WHERE exp_channel_data.entry_id IN ($related_id)");
 				foreach($query->result_array() as $row) {
 					$query = $this->EE->db->query("SELECT url_title FROM exp_channel_data
@@ -221,7 +216,6 @@ class Related {
 					$recc['related_url'] = $info->url_title;
 					$recommendations[] = $recc;
 				}
-				//var_dump($recommendations);
 				return $recommendations;
 			}
 		}

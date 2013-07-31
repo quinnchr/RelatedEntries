@@ -25,7 +25,6 @@ class RelatedSources {
 
 	public $distributions = array();
 	
-	
 	/**
 	 * Get our corpus ready. First we strip out all common words specified in our training data,
 	 * then loop through each document and generate a frequency table.
@@ -123,7 +122,8 @@ class Distribution implements Iterator {
 		$this->text = $text;
 		$this->frequency = $this->_frequency($text);
 		$this->words = array_keys($this->frequency);
-		$this->size = (count(explode(' ',$text)) < $this->limit) ? count(explode(' ',$text)) : $this->limit;
+        $count = count(explode(' ',$text));
+		$this->size = ($count < $this->limit) ? $count : $this->limit;
 	}
 	
 	

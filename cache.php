@@ -28,7 +28,8 @@ $_SERVER['REQUEST_URI'] = $_SERVER['PATH_INFO'];
 
 ob_start();
 chdir(dirname($base));
-require($base);           // Main CI index.php file
+//Main CI index.php file
+require($base);
 $output = ob_get_contents();
 ob_end_clean();
 $ee =& get_instance();

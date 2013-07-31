@@ -42,14 +42,11 @@ class Related_upd {
 
 		$this->EE->db->insert('modules', $data);
 
-		$fields = array(
-						'entry_id'			=> array('type' 		 => 'int',
-													'constraint'	 => '11'),
-						'field_id'			=> array('type' 		 => 'int',
-													'constraint'	 => '11'),
-						'frequency'			=> array('type'			 => 'text'),
-						'related'			=> array('type'			 => 'text'),
-						'last_cache'		=> array('type' 		 => 'timestamp'));
+		$fields = array('entry_id'	 => array('type' => 'int', 'constraint'	 => '11'),
+						'field_id'	 => array('type' => 'int', 'constraint'	 => '11'),
+						'frequency'	 => array('type' => 'text'),
+						'related'	 => array('type' => 'text'),
+						'last_cache' => array('type' => 'timestamp'));
 
 		$this->EE->dbforge->add_field($fields);
 		$this->EE->dbforge->create_table('related_posts');
@@ -76,7 +73,6 @@ class Related_upd {
 		$this->EE->db->delete('actions');
 
 		$this->EE->dbforge->drop_table('related_posts');		
-
 
 		return TRUE;
 	}
