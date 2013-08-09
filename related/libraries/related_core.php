@@ -40,7 +40,7 @@ class RelatedSources {
 			$this->distributions = $source;
 		} else {
 			foreach($training as $key => $word) {
-				$training[$key] = " $word ";
+				$training[$key] = " " . trim($word) . " ";
 			}
 			foreach($source as $text) {
 				if($text) {
